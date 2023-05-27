@@ -1,6 +1,8 @@
-package com.learn.sample;
+package com.problems.algo;
 
 import java.util.Stack;
+
+import com.learn.sample.DisplayArray;
 
 /**
  * Nearest greater element to the left of every element
