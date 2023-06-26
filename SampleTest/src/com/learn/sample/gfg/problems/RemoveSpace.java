@@ -1,6 +1,5 @@
 package com.learn.sample.gfg.problems;
 
-import com.learn.sample.StringTest;
 
 public class RemoveSpace {
 

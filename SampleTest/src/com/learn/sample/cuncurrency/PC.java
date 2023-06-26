@@ -31,6 +31,7 @@ public class PC {
                 // notifies the consumer thread that
                 // now it can start consuming
 
+                notify();
                 // makes the working of program easier
                 // to  understand
                 Thread.sleep(1000);
