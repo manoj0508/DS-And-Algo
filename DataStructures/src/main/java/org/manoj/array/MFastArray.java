@@ -1,27 +1,72 @@
 package org.manoj.array;
 
-public class MFastArray<T> {
+import java.io.Serializable;
+import java.util.Arrays;
+import java.util.RandomAccess;
 
-    int size = 10;
-    int currentIndex=0;
-    Object[] data = null;
+public class MFastArray<T> implements RandomAccess, Serializable {
 
-    public MFastArray(){
-        data = new Object[size];
+    private final int default_size = 10;
+    private int currentIndex = 0;
+    transient Object[] data = null;
+
+    public MFastArray() {
+        data = new Object[default_size];
     }
 
-    public void addValue(T value){
-        if(null != value){
+    public void addValue(T value) {
+        if (null != value) {
+            if (currentIndex >= data.length) {
+                increaseArraySize();
+            }
             data[currentIndex] = value;
             currentIndex++;
         }
     }
 
-    public void printData(){
+    public T getValue(int index) {
+        if (index < currentIndex) {
+            return (T) data[index];
+        }
+        return null;
+    }
+
+    public T getFirstValue() {
+        return getValue(0);
+    }
+
+    public T getLastValue() {
+        return getValue(currentIndex - 1);
+    }
+
+    public int findIndex(T value) {
+        for (int i = 0; i < currentIndex; i++) {
+            if (data[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
+    private void increaseArraySize() {
+        if (currentIndex >= default_size) {
+            int newSize = currentIndex * 2;
+            data = Arrays.copyOf(data, newSize);
+        }
+    }
+
+
+    public void printData() {
         IO.print("[ ");
-        for(int i=0; i<currentIndex; i++){
-            IO.print(data[i]+ " ");
+        for (int i = 0; i < currentIndex; i++) {
+            IO.print(data[i] + " ");
         }
         IO.println("]");
     }
+
+    public int listSize() {
+        return currentIndex;
+    }
+
 }
