@@ -8,7 +8,7 @@ public class MFastArray<T> implements RandomAccess, Serializable {
 
     private final int default_size = 10;
     private int currentIndex = 0;
-    transient Object[] data = null;
+    transient Object[] data;
 
     public MFastArray() {
         data = new Object[default_size];
@@ -24,6 +24,7 @@ public class MFastArray<T> implements RandomAccess, Serializable {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public T getValue(int index) {
         if (index < currentIndex) {
             return (T) data[index];
@@ -69,4 +70,22 @@ public class MFastArray<T> implements RandomAccess, Serializable {
         return currentIndex;
     }
 
+
+    public T removeByIndex(int index) {
+        if (index < currentIndex) {
+            T value = getValue(index);
+            System.arraycopy(data, index + 1, data, index, currentIndex - index);
+            currentIndex--;
+            return value;
+        }
+        return null;
+    }
+
+    public T removeByValue(T value) {
+        int index = findIndex(value);
+        if (index != -1) {
+            return removeByIndex(index);
+        }
+        return null;
+    }
 }
