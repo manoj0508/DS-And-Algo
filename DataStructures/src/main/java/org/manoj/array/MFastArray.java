@@ -88,4 +88,13 @@ public class MFastArray<T> implements RandomAccess, Serializable {
         }
         return null;
     }
+
+    public boolean setValue(int index, T value){
+        if(index < currentIndex){
+            data[index] = value;
+            return true;
+        }else {
+           throw new IndexOutOfBoundsException("Index "+index+" out of bounds for length"+ currentIndex);
+        }
+    }
 }
