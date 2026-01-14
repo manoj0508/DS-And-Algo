@@ -32,6 +32,14 @@ public class MSinglyLinkedList<T> implements Serializable {
         }
     }
 
+    public T getFirst(){
+        return header.data;
+    }
+
+    public T getLast(){
+        return nextNode.data;
+    }
+
     public void printAllElement() {
         IO.print("[");
         Node<T> node = header;
