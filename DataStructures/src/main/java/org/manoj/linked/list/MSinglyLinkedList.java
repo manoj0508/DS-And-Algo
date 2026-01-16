@@ -55,15 +55,16 @@ public class MSinglyLinkedList<T> implements Serializable {
         return size;
     }
 
-}
+    class Node<T> {
+        T data;
+        Node<T> next;
 
-class Node<T> {
-    T data;
-    Node<T> next;
+        Node(T value) {
+            data = value;
+            next = null;
+        }
 
-    Node(T value) {
-        data = value;
-        next = null;
     }
 
 }
+
